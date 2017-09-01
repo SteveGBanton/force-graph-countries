@@ -2056,31 +2056,10 @@ function forceLayout() {
         }
     ]
 
-
-
-
-    /*
-        for (var i = 0; i < nodes.length; i++) {
-            if (nodes[i].target !== undefined) {
-                for (var j = 0; j < nodes[i].target.length; j++) {
-                    links.push({
-                      source: nodes[i],
-                      target: nodes[nodes[i].target[j]]
-                    })
-                }
-            }
-
-        }
-
-      */
-
-
-
     var myChart = d3.select("#chart3")
         .append('svg')
         .attr('width', width)
         .attr('height', height)
-
 
     var simulation = d3.forceSimulation()
         .nodes(nodes)
@@ -2091,13 +2070,10 @@ function forceLayout() {
         .force("y", d3.forceY(height / 2))
         .force("x", d3.forceX(width / 2))
 
-
-
     //add links
     var link = myChart.selectAll('line')
         .data(links).enter().append('line')
         .attr('stroke', 'white')
-
 
     var node = myChart.selectAll('circle')
         .data(nodes).enter()
@@ -2106,14 +2082,6 @@ function forceLayout() {
             .on("start", dragstarted)
             .on("drag", dragged)
             .on("end", dragended));
-
-    /*
-        node.append('circle')
-            .attr('r', 2)
-            .attr('fill', palette.pink)
-    */
-
-
 
     //Add flag
     node.append('image')
@@ -2124,9 +2092,6 @@ function forceLayout() {
         .attr('width', '18')
         .attr('height', '12')
         .attr('transform', 'translate(-5,-3)')
-
-
-
 
     //Add Text
     node.append('text')
@@ -2162,7 +2127,6 @@ function forceLayout() {
             }
         })
 
-
     node.on('mouseover', function(d, i) {
             d3.select(this).select('image')
                 .classed('highlight', true)
@@ -2183,7 +2147,6 @@ function forceLayout() {
 
             //  tooltip.transition().style('opacity', '0')
         })
-
 
     //how it is animated over time. tick is the timing of javascript.
     //Whenever time passes, dots must be animated
@@ -2212,11 +2175,6 @@ function forceLayout() {
             })
 
     })
-
-
-
-
-
 
     function dragstarted(d) {
         if (!d3.event.active) simulation.alphaTarget(0.3).restart();
